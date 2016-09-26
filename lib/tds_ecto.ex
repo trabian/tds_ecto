@@ -83,7 +83,7 @@ defmodule Tds.Ecto do
     #IO.inspect status
     cond do
       status == 0                                -> :ok
-      output != nil -> if String.contains?(output[:msg_text], "already exists"), do: {:error, :already_up}
+      String.contains?(output[:msg_text], "already exists") -> {:error, :already_up}
       true                                       -> {:error, output}
     end
   end
